@@ -213,76 +213,67 @@ export default function FeatureStar({
           </motion.p>
         </div>
         
-        {/* Overlay backdrop */}
-        <motion.div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100]"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isHovered ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
-          style={{ 
-            pointerEvents: isHovered ? 'auto' : 'none',
-            display: isHovered ? 'block' : 'none'
-          }}
-        />
-        
-        {/* Enhanced hover information panel - Always centered */}
-        <motion.div
-          className="fixed top-1/2 left-1/2 w-96 max-w-[90vw] premium-glass rounded-xl p-6 z-[101]"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ 
-            opacity: isHovered ? 1 : 0, 
-            scale: isHovered ? 1 : 0.8
-          }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          style={{
-            transform: 'translate(-50%, -50%)',
-            background: `
-              linear-gradient(135deg, 
-                rgba(0, 0, 0, 0.95), 
-                rgba(15, 15, 35, 0.98)
-              )
-            `,
-            border: `2px solid ${colors.glow.replace('0.6', '0.6')}`,
-            boxShadow: `
-              0 25px 50px rgba(0, 0, 0, 0.8), 
-              0 0 50px ${colors.glow.replace('0.6', '0.5')},
-              0 0 100px ${colors.glow.replace('0.6', '0.3')}
-            `,
-            backdropFilter: 'blur(25px)',
-            maxHeight: '80vh',
-            overflowY: 'auto',
-            pointerEvents: isHovered ? 'auto' : 'none',
-            display: isHovered ? 'block' : 'none'
-          }}
-        >
-          <motion.h3 
-            className="font-orbitron font-bold text-white mb-3 text-lg"
-            style={{ color: colors.from }}
-          >
-            {name}
-          </motion.h3>
-          <p className="text-sm text-gray-300 mb-4 leading-relaxed">{description}</p>
-          <div className="space-y-2">
-            <p className="text-sm font-semibold text-cyan-400 mb-2">Core Technologies:</p>
-            <div className="grid grid-cols-1 gap-2">
-              {technologies.map((tech, i) => (
-                <motion.div
-                  key={tech}
-                  className="text-sm text-gray-400 flex items-center gap-2 p-2 rounded-lg bg-white/5"
-                  initial={{ opacity: 0, x: -15 }}
-                  animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -15 }}
-                  transition={{ duration: 0.3, delay: i * 0.1 }}
+        {/* COMPLETELY CENTERED POPUP OVERLAY */}
+        {isHovered && (
+          <>
+            {/* Full screen backdrop */}
+            <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999]" />
+            
+            {/* Popup container - GUARANTEED CENTER */}
+            <div 
+              className="fixed z-[10000]"
+              style={{
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '400px',
+                maxWidth: '90vw',
+                maxHeight: '80vh'
+              }}
+            >
+              <motion.div
+                className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border shadow-2xl"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  border: `2px solid ${colors.glow.replace('0.6', '0.7')}`,
+                  boxShadow: `
+                    0 25px 50px rgba(0, 0, 0, 0.9), 
+                    0 0 60px ${colors.glow.replace('0.6', '0.6')},
+                    0 0 120px ${colors.glow.replace('0.6', '0.4')}
+                  `,
+                  backdropFilter: 'blur(30px)'
+                }}
+              >
+                <h3 
+                  className="font-orbitron font-bold text-white mb-3 text-xl"
+                  style={{ color: colors.from }}
                 >
-                  <div 
-                    className="w-2 h-2 rounded-full flex-shrink-0"
-                    style={{ background: colors.glow }}
-                  />
-                  {tech}
-                </motion.div>
-              ))}
+                  {name}
+                </h3>
+                <p className="text-sm text-gray-300 mb-4 leading-relaxed">{description}</p>
+                <div className="space-y-2">
+                  <p className="text-sm font-semibold text-cyan-400 mb-2">Core Technologies:</p>
+                  <div className="grid grid-cols-1 gap-2">
+                    {technologies.map((tech, i) => (
+                      <div
+                        key={tech}
+                        className="text-sm text-gray-400 flex items-center gap-2 p-2 rounded-lg bg-white/5"
+                      >
+                        <div 
+                          className="w-2 h-2 rounded-full flex-shrink-0"
+                          style={{ background: colors.glow }}
+                        />
+                        {tech}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
             </div>
-          </div>
-        </motion.div>
+          </>
+        )}
       </motion.div>
     </motion.div>
   );
