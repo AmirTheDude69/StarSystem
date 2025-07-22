@@ -7,6 +7,7 @@ This is a full-stack TypeScript application built with React frontend and Expres
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Design preferences: Clean, minimalist cosmic interfaces without clutter. Prefers spacious, spread-out layouts over compact designs.
 
 ## System Architecture
 

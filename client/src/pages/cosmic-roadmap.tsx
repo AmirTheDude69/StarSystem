@@ -14,7 +14,7 @@ const planets = [
       to: 'hsl(217, 91%, 60%)',
       glow: 'rgba(6, 182, 212, 0.6)'
     },
-    distance: 220,
+    distance: 300,
     duration: 25,
     delay: 0,
     technologies: ['Machine Learning', 'Neural Networks', 'NLP', 'Computer Vision', 'Deep Learning']
@@ -28,7 +28,7 @@ const planets = [
       to: 'hsl(330, 85%, 60%)',
       glow: 'rgba(168, 85, 247, 0.6)'
     },
-    distance: 320,
+    distance: 450,
     duration: 35,
     delay: 0.8,
     technologies: ['AWS', 'Azure', 'Kubernetes', 'Docker', 'Serverless']
@@ -42,7 +42,7 @@ const planets = [
       to: 'hsl(160, 84%, 39%)',
       glow: 'rgba(34, 197, 94, 0.6)'
     },
-    distance: 420,
+    distance: 600,
     duration: 45,
     delay: 1.6,
     technologies: ['Big Data', 'Real-time Analytics', 'Data Visualization', 'ETL', 'Data Warehousing']
@@ -56,7 +56,7 @@ const planets = [
       to: 'hsl(0, 84%, 60%)',
       glow: 'rgba(249, 115, 22, 0.6)'
     },
-    distance: 520,
+    distance: 750,
     duration: 55,
     delay: 2.4,
     technologies: ['Zero Trust', 'Encryption', 'Identity Management', 'Threat Detection', 'Compliance']
@@ -70,7 +70,7 @@ const planets = [
       to: 'hsl(25, 95%, 53%)',
       glow: 'rgba(251, 191, 36, 0.6)'
     },
-    distance: 620,
+    distance: 900,
     duration: 65,
     delay: 3.2,
     technologies: ['RPA', 'Workflow Automation', 'API Integration', 'Process Mining', 'DevOps']
@@ -78,11 +78,11 @@ const planets = [
 ];
 
 const orbitalPaths = [
-  { width: 440, height: 440, opacity: 0.3 },
-  { width: 640, height: 640, opacity: 0.25 },
-  { width: 840, height: 840, opacity: 0.2 },
-  { width: 1040, height: 1040, opacity: 0.15 },
-  { width: 1240, height: 1240, opacity: 0.1 }
+  { width: 600, height: 600, opacity: 0.3 },
+  { width: 900, height: 900, opacity: 0.25 },
+  { width: 1200, height: 1200, opacity: 0.2 },
+  { width: 1500, height: 1500, opacity: 0.15 },
+  { width: 1800, height: 1800, opacity: 0.1 }
 ];
 
 export default function CosmicRoadmap() {
@@ -154,111 +154,8 @@ export default function CosmicRoadmap() {
           ))}
         </motion.div>
         
-        {/* Enhanced title section */}
-        <motion.div 
-          className="absolute top-12 left-1/2 transform -translate-x-1/2 text-center z-20"
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
-        >
-          <motion.h1 
-            className="text-5xl md:text-7xl font-orbitron font-black text-transparent bg-clip-text mb-6"
-            style={{
-              background: 'linear-gradient(45deg, #00f5ff, #a855f7, #ec4899, #00f5ff)',
-              backgroundSize: '300% 300%',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text'
-            }}
-            animate={{
-              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            MIRAGE TECH
-          </motion.h1>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, delay: 1.5 }}
-          >
-            <p className="text-xl font-inter text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              A constellation of cutting-edge technology services
-            </p>
-            <p className="text-sm font-inter text-cyan-400/80 mt-2 tracking-wide">
-              Hover over planets to explore our technologies
-            </p>
-          </motion.div>
-        </motion.div>
-        
-        {/* Enhanced navigation panel */}
-        <motion.div 
-          className="absolute bottom-8 left-8 premium-glass rounded-xl p-6 max-w-sm"
-          style={{
-            background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(15, 15, 35, 0.8))',
-            border: '1px solid rgba(0, 245, 255, 0.3)'
-          }}
-          initial={{ x: -150, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1.5, delay: 3 }}
-        >
-          <h3 className="font-orbitron font-bold text-cyan-400 mb-4 text-lg">SYSTEM MAP</h3>
-          <div className="space-y-3">
-            {planets.map((planet, index) => (
-              <motion.div
-                key={planet.name}
-                className="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors cursor-pointer"
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 3.5 + index * 0.2 }}
-                whileHover={{ scale: 1.05, x: 10 }}
-              >
-                <div 
-                  className="w-4 h-4 rounded-full flex-shrink-0"
-                  style={{ 
-                    background: `linear-gradient(135deg, ${planet.colors.from}, ${planet.colors.to})`,
-                    boxShadow: `0 0 10px ${planet.colors.glow}`
-                  }}
-                />
-                <div>
-                  <span className="text-white font-medium text-sm">{planet.name}</span>
-                  <div className="text-xs text-gray-400">{planet.emoji} {planet.technologies[0]}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-        
-        {/* Performance metrics panel */}
-        <motion.div 
-          className="absolute bottom-8 right-8 premium-glass rounded-xl p-6"
-          style={{
-            background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(15, 15, 35, 0.8))',
-            border: '1px solid rgba(168, 85, 247, 0.3)'
-          }}
-          initial={{ x: 150, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1.5, delay: 3.5 }}
-        >
-          <h3 className="font-orbitron font-bold text-purple-400 mb-4">SYSTEM STATUS</h3>
-          <div className="space-y-2 text-sm">
-            <div className="flex justify-between items-center">
-              <span className="text-gray-300">Active Services</span>
-              <span className="text-green-400 font-bold">5/5</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-300">Performance</span>
-              <span className="text-cyan-400 font-bold">98.7%</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-300">Efficiency</span>
-              <span className="text-pink-400 font-bold">Optimal</span>
-            </div>
-          </div>
-        </motion.div>
+
+
       </div>
     </div>
   );
