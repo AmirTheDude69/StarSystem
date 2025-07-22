@@ -81,7 +81,10 @@ export default function CosmicRoadmap() {
       {/* Enhanced cosmic glow effect */}
       <PremiumCosmicGlow />
       
-
+      {/* Ambient energy fields */}
+      <div className="fixed top-0 left-0 w-[600px] h-[600px] bg-gradient-to-br from-cyan-400/20 via-blue-500/10 to-transparent rounded-full blur-3xl pointer-events-none z-1 animate-pulse" />
+      <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-purple-400/25 via-pink-500/15 to-transparent rounded-full blur-3xl pointer-events-none z-1 animate-pulse" style={{ animationDelay: '1s' }} />
+      <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-t from-emerald-400/15 via-green-500/8 to-transparent rounded-full blur-3xl pointer-events-none z-1 animate-pulse" style={{ animationDelay: '2s' }} />
       
       {/* Main content */}
       <div className="relative z-10 min-h-screen w-full">
