@@ -104,33 +104,34 @@ export default function CosmicRoadmap() {
         ))}
         
         {/* Orbital rings centered around Mirage Tech */}
-        <motion.svg
-          className="fixed inset-0 w-full h-full pointer-events-none z-5"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+        <motion.div
+          className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-5"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 4, delay: 2 }}
         >
           {/* Multiple concentric orbital rings */}
-          {[200, 300, 450, 600].map((radius, index) => (
-            <motion.circle
+          {[180, 280, 420, 580].map((radius, index) => (
+            <motion.div
               key={`orbital-ring-${index}`}
-              cx="50%"
-              cy="50%"
-              r={radius}
-              fill="none"
-              stroke={`rgba(${index === 0 ? '6, 182, 212' : index === 1 ? '168, 85, 247' : index === 2 ? '34, 197, 94' : '249, 115, 22'}, ${0.15 - index * 0.02})`}
-              strokeWidth="1"
-              strokeDasharray={`${5 + index * 3} ${8 + index * 4}`}
+              className="absolute rounded-full border"
               style={{
+                width: radius * 2,
+                height: radius * 2,
+                top: -radius,
+                left: -radius,
+                borderColor: `rgba(${index === 0 ? '6, 182, 212' : index === 1 ? '168, 85, 247' : index === 2 ? '34, 197, 94' : '249, 115, 22'}, ${0.12 - index * 0.015})`,
+                borderWidth: '1px',
+                borderStyle: 'dashed',
                 filter: 'blur(0.5px)'
               }}
               animate={{
-                strokeDashoffset: [0, 100],
-                opacity: [0.1, 0.2, 0.1]
+                rotate: [0, 360],
+                opacity: [0.08, 0.18, 0.08]
               }}
               transition={{
-                strokeDashoffset: {
-                  duration: 40 + index * 10,
+                rotate: {
+                  duration: 60 + index * 20,
                   repeat: Infinity,
                   ease: "linear"
                 },
@@ -142,8 +143,15 @@ export default function CosmicRoadmap() {
               }}
             />
           ))}
-          
-          {/* Connecting constellation lines */}
+        </motion.div>
+
+        {/* Connecting constellation lines */}
+        <motion.svg
+          className="fixed inset-0 w-full h-full pointer-events-none z-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          transition={{ duration: 3, delay: 4 }}
+        >
           {featureStars.map((star, index) => {
             const centerX = '50%';
             const centerY = '50%';
