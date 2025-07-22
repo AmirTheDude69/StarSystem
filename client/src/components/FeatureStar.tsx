@@ -213,25 +213,29 @@ export default function FeatureStar({
           </motion.p>
         </div>
         
-        {/* Enhanced hover information panel */}
+        {/* Enhanced hover information panel - Always centered */}
         <motion.div
-          className="absolute left-full ml-6 top-1/2 transform -translate-y-1/2 w-80 premium-glass rounded-xl p-6 z-20"
-          initial={{ opacity: 0, x: -30, scale: 0.9 }}
+          className="fixed top-1/2 left-1/2 w-96 premium-glass rounded-xl p-6 z-50 transform -translate-x-1/2 -translate-y-1/2"
+          initial={{ opacity: 0, scale: 0.8 }}
           animate={{ 
             opacity: isHovered ? 1 : 0, 
-            x: isHovered ? 0 : -30,
-            scale: isHovered ? 1 : 0.9
+            scale: isHovered ? 1 : 0.8
           }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
           style={{
             background: `
               linear-gradient(135deg, 
-                rgba(0, 0, 0, 0.85), 
+                rgba(0, 0, 0, 0.9), 
                 rgba(15, 15, 35, 0.95)
               )
             `,
             border: `1px solid ${colors.glow.replace('0.6', '0.5')}`,
-            boxShadow: `0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px ${colors.glow.replace('0.6', '0.3')}`
+            boxShadow: `
+              0 25px 50px rgba(0, 0, 0, 0.6), 
+              0 0 40px ${colors.glow.replace('0.6', '0.4')},
+              0 0 80px ${colors.glow.replace('0.6', '0.2')}
+            `,
+            backdropFilter: 'blur(20px)'
           }}
         >
           <motion.h3 
