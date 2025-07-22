@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 import PremiumStarField from '@/components/PremiumStarField';
 import PremiumCosmicGlow from '@/components/PremiumCosmicGlow';
 import PremiumCentralStar from '@/components/PremiumCentralStar';
-import PremiumOrbitingPlanet from '@/components/PremiumOrbitingPlanet';
+import FeatureStar from '@/components/FeatureStar';
 
-const planets = [
+const featureStars = [
   {
     name: 'AI Solutions',
     emoji: '🤖',
@@ -14,9 +14,8 @@ const planets = [
       to: 'hsl(217, 91%, 60%)',
       glow: 'rgba(6, 182, 212, 0.6)'
     },
-    distance: 300,
-    duration: 25,
-    delay: 0,
+    position: { x: '20%', y: '25%' },
+    delay: 0.5,
     technologies: ['Machine Learning', 'Neural Networks', 'NLP', 'Computer Vision', 'Deep Learning']
   },
   {
@@ -28,9 +27,8 @@ const planets = [
       to: 'hsl(330, 85%, 60%)',
       glow: 'rgba(168, 85, 247, 0.6)'
     },
-    distance: 450,
-    duration: 35,
-    delay: 0.8,
+    position: { x: '80%', y: '30%' },
+    delay: 1,
     technologies: ['AWS', 'Azure', 'Kubernetes', 'Docker', 'Serverless']
   },
   {
@@ -42,9 +40,8 @@ const planets = [
       to: 'hsl(160, 84%, 39%)',
       glow: 'rgba(34, 197, 94, 0.6)'
     },
-    distance: 600,
-    duration: 45,
-    delay: 1.6,
+    position: { x: '25%', y: '75%' },
+    delay: 1.5,
     technologies: ['Big Data', 'Real-time Analytics', 'Data Visualization', 'ETL', 'Data Warehousing']
   },
   {
@@ -56,9 +53,8 @@ const planets = [
       to: 'hsl(0, 84%, 60%)',
       glow: 'rgba(249, 115, 22, 0.6)'
     },
-    distance: 750,
-    duration: 55,
-    delay: 2.4,
+    position: { x: '75%', y: '70%' },
+    delay: 2,
     technologies: ['Zero Trust', 'Encryption', 'Identity Management', 'Threat Detection', 'Compliance']
   },
   {
@@ -70,19 +66,10 @@ const planets = [
       to: 'hsl(25, 95%, 53%)',
       glow: 'rgba(251, 191, 36, 0.6)'
     },
-    distance: 900,
-    duration: 65,
-    delay: 3.2,
+    position: { x: '50%', y: '85%' },
+    delay: 2.5,
     technologies: ['RPA', 'Workflow Automation', 'API Integration', 'Process Mining', 'DevOps']
   }
-];
-
-const orbitalPaths = [
-  { width: 600, height: 600, opacity: 0.3 },
-  { width: 900, height: 900, opacity: 0.25 },
-  { width: 1200, height: 1200, opacity: 0.2 },
-  { width: 1500, height: 1500, opacity: 0.15 },
-  { width: 1800, height: 1800, opacity: 0.1 }
 ];
 
 export default function CosmicRoadmap() {
@@ -100,60 +87,76 @@ export default function CosmicRoadmap() {
       <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-t from-emerald-400/15 via-green-500/8 to-transparent rounded-full blur-3xl pointer-events-none z-1 animate-pulse" style={{ animationDelay: '2s' }} />
       
       {/* Main content */}
-      <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
-        {/* Responsive orbital system container */}
-        <motion.div 
-          className="orbit-container relative w-full h-full flex items-center justify-center"
-          initial={{ scale: 0.3, opacity: 0, rotateY: -180 }}
-          animate={{ scale: 1, opacity: 1, rotateY: 0 }}
-          transition={{ duration: 3, ease: "easeOut" }}
+      <div className="relative z-10 min-h-screen w-full">
+        {/* Central star - Mirage Tech */}
+        <motion.div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          initial={{ scale: 0, rotate: -360, opacity: 0 }}
+          animate={{ scale: 1, rotate: 0, opacity: 1 }}
+          transition={{ duration: 2.5, delay: 0.5, ease: "easeOut" }}
         >
-          {/* Enhanced orbital paths with glow effects */}
-          {orbitalPaths.map((path, index) => (
-            <motion.div
-              key={index}
-              className="absolute rounded-full pointer-events-none"
-              style={{
-                width: path.width,
-                height: path.height,
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                border: `1px solid rgba(0, 245, 255, ${path.opacity})`,
-                boxShadow: `0 0 20px rgba(0, 245, 255, ${path.opacity * 0.5}), inset 0 0 20px rgba(0, 245, 255, ${path.opacity * 0.2})`
-              }}
-              initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 2, delay: index * 0.3, ease: "easeOut" }}
-            />
-          ))}
-          
-          {/* Central star - Mirage Tech */}
-          <motion.div
-            initial={{ scale: 0, rotate: -360, opacity: 0 }}
-            animate={{ scale: 1, rotate: 0, opacity: 1 }}
-            transition={{ duration: 2.5, delay: 1, ease: "easeOut" }}
-          >
-            <PremiumCentralStar />
-          </motion.div>
-          
-          {/* Orbiting service planets with staggered entrance */}
-          {planets.map((planet, index) => (
-            <motion.div
-              key={planet.name}
-              initial={{ opacity: 0, scale: 0, rotate: -180 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ 
-                duration: 1.5, 
-                delay: index * 0.6 + 2,
-                ease: "backOut"
-              }}
-            >
-              <PremiumOrbitingPlanet {...planet} />
-            </motion.div>
-          ))}
+          <PremiumCentralStar />
         </motion.div>
         
+        {/* Feature stars spread across the screen */}
+        {featureStars.map((star, index) => (
+          <FeatureStar key={star.name} {...star} />
+        ))}
+        
+        {/* Connecting constellation lines */}
+        <motion.svg
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.3 }}
+          transition={{ duration: 3, delay: 3 }}
+        >
+          {/* Connection from center to each feature star */}
+          {featureStars.map((star, index) => {
+            const centerX = '50%';
+            const centerY = '50%';
+            return (
+              <motion.line
+                key={`connection-${index}`}
+                x1={centerX}
+                y1={centerY}
+                x2={star.position.x}
+                y2={star.position.y}
+                stroke="rgba(0, 245, 255, 0.2)"
+                strokeWidth="1"
+                strokeDasharray="5,10"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 2, delay: 3 + index * 0.3 }}
+              />
+            );
+          })}
+          
+          {/* Subtle connections between feature stars */}
+          <motion.line
+            x1="20%"
+            y1="25%"
+            x2="25%"
+            y2="75%"
+            stroke="rgba(168, 85, 247, 0.15)"
+            strokeWidth="1"
+            strokeDasharray="3,8"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 2, delay: 5 }}
+          />
+          <motion.line
+            x1="80%"
+            y1="30%"
+            x2="75%"
+            y2="70%"
+            stroke="rgba(34, 197, 94, 0.15)"
+            strokeWidth="1"
+            strokeDasharray="3,8"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 2, delay: 5.5 }}
+          />
+        </motion.svg>
 
 
       </div>
