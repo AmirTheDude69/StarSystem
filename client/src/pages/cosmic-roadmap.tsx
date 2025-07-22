@@ -14,7 +14,7 @@ const featureStars = [
       to: 'hsl(217, 91%, 60%)',
       glow: 'rgba(6, 182, 212, 0.6)'
     },
-    position: { x: '20%', y: '25%' },
+    position: { x: '15%', y: '20%' },
     delay: 0.5,
     technologies: ['Machine Learning', 'Neural Networks', 'NLP', 'Computer Vision', 'Deep Learning']
   },
@@ -27,7 +27,7 @@ const featureStars = [
       to: 'hsl(330, 85%, 60%)',
       glow: 'rgba(168, 85, 247, 0.6)'
     },
-    position: { x: '80%', y: '30%' },
+    position: { x: '85%', y: '25%' },
     delay: 1,
     technologies: ['AWS', 'Azure', 'Kubernetes', 'Docker', 'Serverless']
   },
@@ -40,7 +40,7 @@ const featureStars = [
       to: 'hsl(160, 84%, 39%)',
       glow: 'rgba(34, 197, 94, 0.6)'
     },
-    position: { x: '25%', y: '75%' },
+    position: { x: '12%', y: '78%' },
     delay: 1.5,
     technologies: ['Big Data', 'Real-time Analytics', 'Data Visualization', 'ETL', 'Data Warehousing']
   },
@@ -53,7 +53,7 @@ const featureStars = [
       to: 'hsl(0, 84%, 60%)',
       glow: 'rgba(249, 115, 22, 0.6)'
     },
-    position: { x: '75%', y: '70%' },
+    position: { x: '88%', y: '75%' },
     delay: 2,
     technologies: ['Zero Trust', 'Encryption', 'Identity Management', 'Threat Detection', 'Compliance']
   },
@@ -66,7 +66,7 @@ const featureStars = [
       to: 'hsl(25, 95%, 53%)',
       glow: 'rgba(251, 191, 36, 0.6)'
     },
-    position: { x: '50%', y: '85%' },
+    position: { x: '50%', y: '15%' },
     delay: 2.5,
     technologies: ['RPA', 'Workflow Automation', 'API Integration', 'Process Mining', 'DevOps']
   }
