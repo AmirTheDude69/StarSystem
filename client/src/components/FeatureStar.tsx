@@ -213,9 +213,21 @@ export default function FeatureStar({
           </motion.p>
         </div>
         
+        {/* Overlay backdrop */}
+        <motion.div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+          style={{ 
+            pointerEvents: isHovered ? 'auto' : 'none',
+            display: isHovered ? 'block' : 'none'
+          }}
+        />
+        
         {/* Enhanced hover information panel - Always centered */}
         <motion.div
-          className="fixed top-1/2 left-1/2 w-96 premium-glass rounded-xl p-6 z-50 transform -translate-x-1/2 -translate-y-1/2"
+          className="fixed top-1/2 left-1/2 w-96 max-w-[90vw] premium-glass rounded-xl p-6 z-[101]"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ 
             opacity: isHovered ? 1 : 0, 
@@ -223,19 +235,24 @@ export default function FeatureStar({
           }}
           transition={{ duration: 0.4, ease: "easeOut" }}
           style={{
+            transform: 'translate(-50%, -50%)',
             background: `
               linear-gradient(135deg, 
-                rgba(0, 0, 0, 0.9), 
-                rgba(15, 15, 35, 0.95)
+                rgba(0, 0, 0, 0.95), 
+                rgba(15, 15, 35, 0.98)
               )
             `,
-            border: `1px solid ${colors.glow.replace('0.6', '0.5')}`,
+            border: `2px solid ${colors.glow.replace('0.6', '0.6')}`,
             boxShadow: `
-              0 25px 50px rgba(0, 0, 0, 0.6), 
-              0 0 40px ${colors.glow.replace('0.6', '0.4')},
-              0 0 80px ${colors.glow.replace('0.6', '0.2')}
+              0 25px 50px rgba(0, 0, 0, 0.8), 
+              0 0 50px ${colors.glow.replace('0.6', '0.5')},
+              0 0 100px ${colors.glow.replace('0.6', '0.3')}
             `,
-            backdropFilter: 'blur(20px)'
+            backdropFilter: 'blur(25px)',
+            maxHeight: '80vh',
+            overflowY: 'auto',
+            pointerEvents: isHovered ? 'auto' : 'none',
+            display: isHovered ? 'block' : 'none'
           }}
         >
           <motion.h3 
