@@ -103,14 +103,47 @@ export default function CosmicRoadmap() {
           <FeatureStar key={star.name} {...star} />
         ))}
         
-        {/* Connecting constellation lines */}
+        {/* Orbital rings centered around Mirage Tech */}
         <motion.svg
-          className="absolute inset-0 w-full h-full pointer-events-none"
+          className="fixed inset-0 w-full h-full pointer-events-none z-5"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.3 }}
-          transition={{ duration: 3, delay: 3 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 4, delay: 2 }}
         >
-          {/* Connection from center to each feature star */}
+          {/* Multiple concentric orbital rings */}
+          {[200, 300, 450, 600].map((radius, index) => (
+            <motion.circle
+              key={`orbital-ring-${index}`}
+              cx="50%"
+              cy="50%"
+              r={radius}
+              fill="none"
+              stroke={`rgba(${index === 0 ? '6, 182, 212' : index === 1 ? '168, 85, 247' : index === 2 ? '34, 197, 94' : '249, 115, 22'}, ${0.15 - index * 0.02})`}
+              strokeWidth="1"
+              strokeDasharray={`${5 + index * 3} ${8 + index * 4}`}
+              style={{
+                filter: 'blur(0.5px)'
+              }}
+              animate={{
+                strokeDashoffset: [0, 100],
+                opacity: [0.1, 0.2, 0.1]
+              }}
+              transition={{
+                strokeDashoffset: {
+                  duration: 40 + index * 10,
+                  repeat: Infinity,
+                  ease: "linear"
+                },
+                opacity: {
+                  duration: 8 + index * 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }
+              }}
+            />
+          ))}
+          
+          {/* Connecting constellation lines */}
           {featureStars.map((star, index) => {
             const centerX = '50%';
             const centerY = '50%';
@@ -121,43 +154,16 @@ export default function CosmicRoadmap() {
                 y1={centerY}
                 x2={star.position.x}
                 y2={star.position.y}
-                stroke="rgba(0, 245, 255, 0.2)"
-                strokeWidth="1"
-                strokeDasharray="5,10"
+                stroke="rgba(255, 255, 255, 0.08)"
+                strokeWidth="0.5"
+                strokeDasharray="2,6"
                 initial={{ pathLength: 0 }}
                 animate={{ pathLength: 1 }}
-                transition={{ duration: 2, delay: 3 + index * 0.3 }}
+                transition={{ duration: 2, delay: 4 + index * 0.2 }}
               />
             );
           })}
-          
-          {/* Subtle connections between feature stars */}
-          <motion.line
-            x1="20%"
-            y1="25%"
-            x2="25%"
-            y2="75%"
-            stroke="rgba(168, 85, 247, 0.15)"
-            strokeWidth="1"
-            strokeDasharray="3,8"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 2, delay: 5 }}
-          />
-          <motion.line
-            x1="80%"
-            y1="30%"
-            x2="75%"
-            y2="70%"
-            stroke="rgba(34, 197, 94, 0.15)"
-            strokeWidth="1"
-            strokeDasharray="3,8"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 2, delay: 5.5 }}
-          />
         </motion.svg>
-
 
       </div>
     </div>
