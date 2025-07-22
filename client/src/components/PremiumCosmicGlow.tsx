@@ -39,60 +39,42 @@ export default function PremiumCosmicGlow() {
 
   return (
     <>
-      {/* Main cursor glow */}
+      {/* Subtle neutral cursor glow */}
       <div
         ref={glowRef}
-        className={`fixed top-0 left-0 w-[300px] h-[300px] pointer-events-none z-20 transition-opacity duration-500 ${
+        className={`fixed top-0 left-0 w-[200px] h-[200px] pointer-events-none z-20 transition-opacity duration-700 ${
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}
         style={{
           background: `
             radial-gradient(circle, 
-              rgba(0, 245, 255, 0.4) 0%, 
-              rgba(168, 85, 247, 0.3) 30%, 
-              rgba(236, 72, 153, 0.2) 60%, 
+              rgba(255, 255, 255, 0.03) 0%, 
+              rgba(255, 255, 255, 0.015) 50%, 
               transparent 80%
             )
           `,
           borderRadius: '50%',
-          filter: 'blur(20px)'
+          filter: 'blur(30px)'
         }}
       />
       
-      {/* Secondary ethereal glow */}
+      {/* Very soft secondary glow */}
       <div
-        className={`fixed top-0 left-0 w-[500px] h-[500px] pointer-events-none z-15 transition-opacity duration-700 ${
-          isVisible ? 'opacity-60' : 'opacity-0'
+        className={`fixed top-0 left-0 w-[400px] h-[400px] pointer-events-none z-15 transition-opacity duration-1000 ${
+          isVisible ? 'opacity-30' : 'opacity-0'
         }`}
         style={{
           transform: `translate(${mousePosition.x - 100}px, ${mousePosition.y - 100}px)`,
           background: `
             radial-gradient(circle, 
-              rgba(0, 245, 255, 0.1) 0%, 
-              rgba(168, 85, 247, 0.08) 40%, 
-              transparent 70%
+              rgba(255, 255, 255, 0.01) 0%, 
+              transparent 60%
             )
           `,
           borderRadius: '50%',
-          filter: 'blur(40px)'
+          filter: 'blur(50px)'
         }}
       />
-      
-      {/* Trailing particles */}
-      {[...Array(6)].map((_, i) => (
-        <div
-          key={i}
-          className={`fixed w-2 h-2 bg-cyan-400 rounded-full pointer-events-none transition-opacity duration-300 ${
-            isVisible ? 'opacity-70' : 'opacity-0'
-          }`}
-          style={{
-            transform: `translate(${mousePosition.x + 150 - i * 15}px, ${mousePosition.y + 150 - i * 8}px)`,
-            transitionDelay: `${i * 50}ms`,
-            filter: 'blur(1px)',
-            zIndex: 18
-          }}
-        />
-      ))}
     </>
   );
 }
